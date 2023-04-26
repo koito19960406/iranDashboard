@@ -21,7 +21,7 @@
 golem::fill_desc(
   pkg_name = "iranDashboard", # The Name of the package containing the App
   pkg_title = "Iran Dashboard", # The Title of the package containing the App
-  pkg_description = "This package is a dashboard for Iran", # The Description of the package containing the App
+  pkg_description = "This is a dashboard for Iran.", # The Description of the package containing the App
   author_first_name = "Koichi", # Your First Name
   author_last_name = "Ito", # Your Last Name
   author_email = "kito1@worldbank.org", # Your Email
@@ -50,7 +50,7 @@ golem::use_recommended_tests()
 
 ## Favicon ----
 # If you want to change the favicon (default is golem's one)
-golem::use_favicon() # path = "path/to/ico". Can be an online file.
+golem::use_favicon("inst/app/www/favicon.ico") # path = "path/to/ico". Can be an online file.
 # golem::remove_favicon() # Uncomment to remove the default favicon
 
 ## Add helper functions ----

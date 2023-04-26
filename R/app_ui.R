@@ -9,8 +9,52 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      h1("iranDashboard")
+    navbarPage("Iran Dashboard",
+
+               header = tagList(
+                 shinyWidgets::useShinydashboard()
+               ),
+
+               # 1st tab -----------------------------------------------------------------
+               tabPanel("Interactive Map",
+                        bootstrapPage(theme = shinythemes::shinytheme("flatly")),
+                        sidebarLayout(
+                          sidebarPanel(
+                            mod_indicator_selection_ui("indicator_selection_1"),
+                            mod_download_ui("download_1")
+                          ),
+                          mainPanel(
+                            mod_map_ui("map_1", height = "calc(100vh - 80px) !important", width = "100%")
+                          )
+                        )
+               ),
+               # 2nd tab -----------------------------------------------------------------
+               tabPanel("Comparison Maps",
+                        bootstrapPage(theme = shinythemes::shinytheme("flatly")),
+                        fluidPage(
+                          fluidRow(
+                            column(width = 6,
+                                   mod_map_ui("map_2", height = "calc(100vh - 80px) !important", width = "50%", embed = T)
+                            ),
+                            column(width = 6,
+                                   mod_map_ui("map_3", height = "calc(100vh - 80px) !important", width = "50%", embed = T))
+                          )
+                        )
+               ),
+
+               # 3rd tab -----------------------------------------------------------------
+               tabPanel("Scatter Plot",
+                        bootstrapPage(theme = shinythemes::shinytheme("flatly")),
+                        sidebarLayout(
+                          sidebarPanel(
+                            mod_indicator_selection_ui("indicator_selection_4"),
+                            mod_indicator_selection_ui("indicator_selection_5")
+                          ),
+                          mainPanel(
+                            mod_scatter_plot_ui("scatter_plot_1")
+                          )
+                        )
+               )
     )
   )
 }
