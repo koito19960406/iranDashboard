@@ -15,6 +15,14 @@ app_ui <- function(request) {
                  shinyWidgets::useShinydashboard()
                ),
 
+              # login -------------------------------------------------------------------
+              tabPanel("Log In",
+                       bootstrapPage(theme = shinythemes::shinytheme("flatly")),
+                       # Add the login module to your UI
+                       mod_login_ui("login_module")
+              ),
+
+
                # 1st tab -----------------------------------------------------------------
                tabPanel("Interactive Map",
                         bootstrapPage(theme = shinythemes::shinytheme("flatly")),

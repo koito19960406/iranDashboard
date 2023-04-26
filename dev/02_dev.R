@@ -24,6 +24,7 @@ golem::add_module(name = "indicator_selection", with_test = TRUE) # Name of the 
 golem::add_module(name = "download", with_test = TRUE) # Name of the module
 golem::add_module(name = "map", with_test = TRUE) # Name of the module
 golem::add_module(name = "scatter_plot", with_test = TRUE) # Name of the module
+golem::add_module(name = "login", with_test = TRUE) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
@@ -42,6 +43,7 @@ golem::add_sass_file("custom")
 usethis::use_data_raw(name = "shapefile_list", open = FALSE)
 usethis::use_data_raw(name = "shapefile", open = FALSE)
 usethis::use_data_raw(name = "excel", open = FALSE)
+usethis::use_data_raw(name = "user_base", open = FALSE)
 
 ## Tests ----
 ## Add one line by test you want to create
