@@ -4,7 +4,7 @@
 \alias{create_labels}
 \title{Create labels for the map}
 \usage{
-create_labels(selected_data)
+create_labels(selected_data, selected_year)
 }
 \arguments{
 \item{selected_data}{A reactive object containing the selected_data data.}

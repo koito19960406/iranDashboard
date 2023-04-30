@@ -25,6 +25,8 @@ golem::add_module(name = "download", with_test = TRUE) # Name of the module
 golem::add_module(name = "map", with_test = TRUE) # Name of the module
 golem::add_module(name = "scatter_plot", with_test = TRUE) # Name of the module
 golem::add_module(name = "login", with_test = TRUE) # Name of the module
+golem::add_module(name = "year_selection", with_test = TRUE) # Name of the module
+golem::add_module(name = "line_plot", with_test = TRUE) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
@@ -44,6 +46,28 @@ usethis::use_data_raw(name = "shapefile_list", open = FALSE)
 usethis::use_data_raw(name = "shapefile", open = FALSE)
 usethis::use_data_raw(name = "excel", open = FALSE)
 usethis::use_data_raw(name = "user_base", open = FALSE)
+
+
+# add packages ------------------------------------------------------------
+usethis::use_package("dplyr")
+usethis::use_package("glue")
+usethis::use_package("htmltools")
+usethis::use_package("leaflet")
+usethis::use_package("leaflet.extras2")
+usethis::use_package("magrittr")
+usethis::use_package("plotly")
+usethis::use_package("sf")
+usethis::use_package("shinyauthr")
+usethis::use_package("shinycssloaders")
+usethis::use_package("tidyr")
+usethis::use_package("writexl")
+usethis::use_package("zip")
+usethis::use_package("shinyWidgets")
+usethis::use_package("shinythemes")
+usethis::use_package("stats")
+usethis::use_package("shinydashboard")
+usethis::use_package("crosstalk")
+usethis::use_package("ggplot2")
 
 ## Tests ----
 ## Add one line by test you want to create

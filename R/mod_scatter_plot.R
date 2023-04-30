@@ -9,9 +9,10 @@
 #' @importFrom shiny NS tagList
 #' @importFrom plotly plotlyOutput
 #' @importFrom shinycssloaders withSpinner
-mod_scatter_plot_ui <- function(id){
+mod_scatter_plot_ui <- function(id, height = "100%", width = "100%"){
   ns <- NS(id)
   tagList(
+    tags$style(type = 'text/css', paste0('#', ns("scatterplot"), ' {height: ', height, '; width: ', width, ';}'), style = 'padding-top:0px;'),
     plotlyOutput(ns("scatterplot"))%>%
       withSpinner()
   )
@@ -29,18 +30,22 @@ mod_scatter_plot_server <- function(id, selected_data_1, selected_data_2){
     # merge two data
     data_reactive_1 <- reactive({
       req(selected_data_1())
+      # selected year
+      selected_year_1 <- paste0("y_", selected_data_1()$year)
+      # filter
       selected_data_1()$data %>%
-        mutate(avg_1 = avg) %>%
         st_drop_geometry() %>%
-        select(province_name, avg_1)
+        select(province_name, value_1 = {{selected_year_1}})
     })
 
     data_reactive_2 <- reactive({
       req(selected_data_2())
+      # selected year
+      selected_year_2 <- paste0("y_", selected_data_2()$year)
+      # filter
       selected_data_2()$data %>%
-        mutate(avg_2 = avg) %>%
         st_drop_geometry() %>%
-        select(province_name, avg_2)
+        select(province_name, value_2 = {{selected_year_2}})
     })
 
     data_joined <- reactive({
@@ -53,7 +58,7 @@ mod_scatter_plot_server <- function(id, selected_data_1, selected_data_2){
     output$scatterplot <- renderPlotly({
       req(data_joined())
       # Create the interactive scatter plot
-      plot_ly(data_joined(), x = ~avg_1, y = ~avg_2, type = "scatter", mode = "markers",
+      plot_ly(data_joined(), x = ~value_1, y = ~value_2, type = "scatter", mode = "markers",
               text = ~province_name,
               hovertemplate = paste0('Province Name: %{text}',
                 '<br>', selected_data_1()$subindicator_readable, ': %{x:.2s}',

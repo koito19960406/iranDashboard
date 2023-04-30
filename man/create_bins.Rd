@@ -4,7 +4,7 @@
 \alias{create_bins}
 \title{Create bins for the map}
 \usage{
-create_bins(selected_data, num_bin)
+create_bins(selected_data, num_bin, selected_year)
 }
 \arguments{
 \item{selected_data}{A reactive object containing the selected_data data.}

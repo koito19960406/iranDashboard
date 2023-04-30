@@ -33,7 +33,7 @@ iran_prov <- c("Alborz" = "Alborz",
                "Lorestan" = "Lorestan",
                "Markazi" = "Markazi",
                "Mazandaran" = "Mazandaran",
-               "National" = "",
+               "National" = "National",
                "NKhorasan" = "North Khorasan",
                "Qazvin" = "Qazvin",
                "Qom" = "Qom",
@@ -47,7 +47,7 @@ iran_prov <- c("Alborz" = "Alborz",
 
 # Load shapefile
 shapefile <- st_read("data-raw/input/admin/IRN_adm1.shp") %>%
-  ms_simplify(., keep = 0.001,
+  ms_simplify(., keep = 0.01,
               keep_shapes = FALSE)
 
 # Load the data from the Excel files

@@ -5,10 +5,10 @@
 #' @return A list of HTML formatted labels.
 #' @importFrom glue glue
 #' @importFrom htmltools HTML
-create_labels <- function(selected_data) {
+create_labels <- function(selected_data, selected_year) {
   paste0(glue("<b>Province Name</b>: { selected_data$data$province_name } </br>"),
          glue("<b>{selected_data$subindicator_readable}: </b>"), " ",
-         glue("{ round(selected_data$data$avg, 3)}"), sep = "") %>%
+         glue("{ round(selected_data$data[[selected_year]], 3)}"), sep = "") %>%
     lapply(HTML)
 }
 
@@ -19,9 +19,16 @@ create_labels <- function(selected_data) {
 #'
 #' @return A vector of bins.
 #' @importFrom stats quantile
-create_bins <- function(selected_data, num_bin) {
+create_bins <- function(selected_data, num_bin, selected_year) {
   probs <- seq(0, 1, length.out = num_bin + 1)
-  bins <- quantile(selected_data$data$avg, probs, na.rm = TRUE, names = FALSE)
+  bins <- quantile(selected_data$data[[selected_year]], probs, na.rm = TRUE, names = FALSE)
+  # Check for non-unique breaks and correct them
+  if (length(unique(bins)) != length(bins)) {
+    cat("Non-unique breaks detected, correcting...\n")
+    bins <- seq(min(selected_data$data[[selected_year]], na.rm = TRUE),
+                max(selected_data$data[[selected_year]], na.rm = TRUE),
+                length.out = num_bin + 1)
+  }
   return(bins)
 }
 
@@ -32,6 +39,7 @@ create_bins <- function(selected_data, num_bin) {
 #' @param vec a vector
 #' @return The return value, if any, from executing the function.
 #'
+#' @importFrom stats na.omit
 #' @noRd
 round_vec <- function(vec) {
   vec <- na.omit(vec)

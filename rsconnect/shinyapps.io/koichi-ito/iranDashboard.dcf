@@ -1,0 +1,13 @@
+name: iranDashboard
+title: iranDashboard
+username:
+account: koichi-ito
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8954470
+bundleId: 7155569
+url: https://koichi-ito.shinyapps.io/iranDashboard/
+when: 1682852711.69278
+lastSyncTime: 1682852711.69291
+asMultiple: FALSE
+asStatic: FALSE

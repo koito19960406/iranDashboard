@@ -17,9 +17,10 @@ mod_map_ui <- function(id,height = "100%", width = "100%", embed = F){
       withSpinner(),
     if (embed) {
       absolutePanel(
-        left = 20, bottom = 10,
-        style = "background-color: white; max-width: 20%; padding: 10px;", # Set the background color and limit the width
-        mod_indicator_selection_ui(id)
+        left = 20, bottom = 30,
+        style = "background-color: white; max-width: 40%; padding: 10px;", # Set the background color and limit the width
+        mod_indicator_selection_ui(paste0(id, "_indicator_selection")),
+        mod_year_selection_ui(paste0(id, "_year_selection"))
       )
     }
   )
@@ -39,9 +40,15 @@ mod_map_server <- function(id, selected_data) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
+    # set selected year
+    selected_year <- reactive({
+      req(selected_data())
+      paste0("y_", selected_data()$year)
+    })
+
     # Create a reactive object for the shapefile
     shp_reactive <- reactive({
-      req(selected_data()$data)
+      req(selected_data())
       selected_data()$data
     })
 
@@ -55,6 +62,7 @@ mod_map_server <- function(id, selected_data) {
 
     # Reactive function for the map
     output$map <- renderLeaflet({
+      req(selected_data())
       req(bb())
       # Create the initial map with options and fit the bounds
       leaflet(options = leafletOptions(zoomSnap = 0.20, zoomDelta = 0.20)) %>%
@@ -73,10 +81,11 @@ mod_map_server <- function(id, selected_data) {
 
     # Observer for updating the map based on the reactive shapefile
     observe({
+      req(selected_data())
       # Create necessary variables and functions for the map
-      labels <- reactive(create_labels(selected_data()))
+      labels <- reactive(create_labels(selected_data(), selected_year()))
       pal_raw <- c('#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C')
-      bins <- reactive(create_bins(selected_data(), 5))
+      bins <- reactive(create_bins(selected_data(), 5, selected_year()))
       pal <- colorBin(palette = pal_raw, bins = bins(), na.color = "grey")
       pal_reversed <- colorBin(palette = rev(pal_raw), bins = bins(), na.color = "grey")
 
@@ -92,7 +101,7 @@ mod_map_server <- function(id, selected_data) {
             textsize = "15px",
             direction = "auto"
           ),
-          fillColor = ~pal(shp_reactive()$avg),
+          fillColor = ~pal(shp_reactive()[[selected_year()]]),
           fillOpacity = 1,
           stroke = TRUE,
           color = "white",
@@ -106,7 +115,7 @@ mod_map_server <- function(id, selected_data) {
         ) %>%
         addLegend("bottomright",
                   pal = pal_reversed,
-                  values = shp_reactive()$avg,
+                  values = shp_reactive()[[selected_year()]],
                   title = selected_data()$subindicator_readable,
                   opacity = 1,
                   labFormat = labelFormat(digits = round_vec(bins()), transform = function(x) sort(x, decreasing = TRUE)),
