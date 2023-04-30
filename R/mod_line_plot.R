@@ -55,7 +55,9 @@ mod_line_plot_server <- function(id, selected_data){
         geom_line(alpha = 0.3) +
         geom_point(alpha = 0.3)+
         ggtitle("Line plot by province") +
-        labs(subtitle = "Hover your cursor to highlight lines") +
+        labs(x="Year",
+             y=selected_data()$subindicator_readable,
+             subtitle = "Hover your cursor to highlight lines") +
         theme_minimal() +
         theme(plot.title = element_text(hjust = 0.5, size = 20),
               plot.subtitle = element_text(hjust = 0.5, size = 12))

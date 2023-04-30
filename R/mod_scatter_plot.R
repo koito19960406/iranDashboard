@@ -65,7 +65,7 @@ mod_scatter_plot_server <- function(id, selected_data_1, selected_data_2){
                 '<br>', selected_data_2()$subindicator_readable, ': %{y:.2s}')) %>%
         layout(title = "Interactive scatter plot",
                xaxis = list(title = selected_data_1()$subindicator_readable),
-               yaxis = list(title = selected_data_1()$subindicator_readable))
+               yaxis = list(title = selected_data_2()$subindicator_readable))
     })
   })
 }
