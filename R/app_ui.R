@@ -18,12 +18,12 @@ app_ui <- function(request) {
                  useShinydashboard()
                ),
 
-              # login -------------------------------------------------------------------
-              tabPanel("Log In",
-                       bootstrapPage(theme = shinytheme("flatly")),
-                       # Add the login module to your UI
-                       mod_login_ui("login_module")
-              ),
+              # # login -------------------------------------------------------------------
+              # tabPanel("Log In",
+              #          bootstrapPage(theme = shinytheme("flatly")),
+              #          # Add the login module to your UI
+              #          mod_login_ui("login_module")
+              # ),
 
 
                # 1st tab -----------------------------------------------------------------
