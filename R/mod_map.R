@@ -36,7 +36,7 @@ mod_map_ui <- function(id,height = "100%", width = "100%", embed = F){
 #' @importFrom magrittr %>%
 #' @importFrom sf st_bbox
 #' @importFrom shinycssloaders withSpinner
-mod_map_server <- function(id, selected_data) {
+mod_map_server <- function(id, selected_data, pal_raw = c('#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C')) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -84,7 +84,7 @@ mod_map_server <- function(id, selected_data) {
       req(selected_data())
       # Create necessary variables and functions for the map
       labels <- reactive(create_labels(selected_data(), selected_year()))
-      pal_raw <- c('#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C')
+      # pal_raw <- c('#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C')
       bins <- reactive(create_bins(selected_data(), 5, selected_year()))
       pal <- colorBin(palette = pal_raw, bins = bins(), na.color = "grey")
       pal_reversed <- colorBin(palette = rev(pal_raw), bins = bins(), na.color = "grey")

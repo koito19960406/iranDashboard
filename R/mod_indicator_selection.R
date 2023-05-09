@@ -42,7 +42,7 @@ mod_indicator_selection_server <- function(id){
                       "Employment Share: Indutry" = "industry_employ_share",
                       "Employment Share: Service" = "service_employ_share",
                       "Employment Share: Public" = "public_share",
-                      "Employment Share: Wage over Salary" = "wage_sal_share",
+                      "Employment Share: Wage" = "wage_sal_share",
                       "Employment Share: Non-agriculture Self-employment" = "self_emp_nonag_share",
                       "Employment Share: Self-employment" = "self_emp_share",
                       "Employment Share: Agriculture Self-employment" = "self_emp_agri_share",

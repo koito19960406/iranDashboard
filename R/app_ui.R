@@ -33,6 +33,7 @@ app_ui <- function(request) {
                           sidebarPanel(
                             mod_indicator_selection_ui("indicator_selection_1"),
                             mod_year_selection_ui("year_selection_1"),
+                            mod_indicator_description_ui("indicator_description_1"),
                             mod_download_ui("download_1")
                           ),
                           mainPanel(
@@ -43,13 +44,25 @@ app_ui <- function(request) {
                # 2nd tab -----------------------------------------------------------------
                tabPanel("Comparison Maps",
                         bootstrapPage(theme = shinytheme("flatly")),
-                        fluidPage(
-                          fluidRow(
-                            column(width = 6,
-                                   mod_map_ui("map_2", height = "calc(100vh - 230px) !important", width = "50%", embed = T)
-                            ),
-                            column(width = 6,
-                                   mod_map_ui("map_3", height = "calc(100vh - 230px) !important", width = "50%", embed = T))
+                        sidebarLayout(
+                          sidebarPanel(
+                            div(h3("Select a variable for the left map: ")),
+                            mod_indicator_selection_ui("indicator_selection_2"),
+                            mod_year_selection_ui("year_selection_2"),
+                            mod_indicator_description_ui("indicator_description_2"),
+                            div(h3("Select a variable for the right map: ")),
+                            mod_indicator_selection_ui("indicator_selection_3"),
+                            mod_year_selection_ui("year_selection_3"),
+                            mod_indicator_description_ui("indicator_description_3"),
+                          ),
+                          mainPanel(
+                            fluidRow(
+                              column(width = 6,
+                                     mod_map_ui("map_2", height = "calc(100vh - 80px) !important", width = "50%")
+                              ),
+                              column(width = 6,
+                                     mod_map_ui("map_3", height = "calc(100vh - 80px) !important", width = "50%"))
+                            )
                           )
                         )
                ),
@@ -62,9 +75,11 @@ app_ui <- function(request) {
                             div(h3("Select variable #1: ")),
                             mod_indicator_selection_ui("indicator_selection_4"),
                             mod_year_selection_ui("year_selection_4"),
+                            mod_indicator_description_ui("indicator_description_4"),
                             div(h3("Select variable #2: ")),
                             mod_indicator_selection_ui("indicator_selection_5"),
                             mod_year_selection_ui("year_selection_5"),
+                            mod_indicator_description_ui("indicator_description_5"),
                           ),
                           mainPanel(
                             mod_scatter_plot_ui("scatter_plot_1", height = "calc(100vh - 130px) !important")
@@ -78,7 +93,8 @@ app_ui <- function(request) {
                        sidebarLayout(
                          sidebarPanel(
                            div(h3("Select variable: ")),
-                           mod_indicator_selection_ui("indicator_selection_6")
+                           mod_indicator_selection_ui("indicator_selection_6"),
+                           mod_indicator_description_ui("indicator_description_6"),
                          ),
                          mainPanel(
                            mod_line_plot_ui("line_plot_1", height = "calc(100vh - 130px) !important")

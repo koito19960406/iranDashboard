@@ -27,6 +27,7 @@ golem::add_module(name = "scatter_plot", with_test = TRUE) # Name of the module
 golem::add_module(name = "login", with_test = TRUE) # Name of the module
 golem::add_module(name = "year_selection", with_test = TRUE) # Name of the module
 golem::add_module(name = "line_plot", with_test = TRUE) # Name of the module
+golem::add_module(name = "indicator_description", with_test = TRUE) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*

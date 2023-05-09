@@ -63,3 +63,20 @@ round_vec <- function(vec) {
   # return(decimal_places)
 }
 
+#' helpers
+#'
+#' @description A fct function
+#'
+#' @param data a dataframe
+#' @return The return value, if any, from executing the function.
+#'
+#' @noRd
+generate_x_axis_breaks_and_labels <- function(data) {
+  min_year <- min(data$year_num)
+  max_year <- max(data$year_num)
+  breaks <- seq(min_year, max_year, by = 3) # Change 'by' parameter to control the interval between labels
+  labels <- as.character(breaks)
+
+  return(list(breaks = breaks, labels = labels))
+}
+
