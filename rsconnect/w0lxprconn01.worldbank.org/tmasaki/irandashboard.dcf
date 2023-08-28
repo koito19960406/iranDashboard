@@ -5,9 +5,7 @@ account: tmasaki
 server: w0lxprconn01.worldbank.org
 hostUrl: http://w0lxprconn01.worldbank.org:3939/__api__
 appId: 1290
-bundleId: 9452
-url: http://w0lxprconn01.worldbank.org:3939/content/3dba7581-a5a9-4309-a36b-84d6db8c741c/
-when: 1683617765.9652
-lastSyncTime: 1683617765.96528
+bundleId:
+url: http://w0lxprconn01.worldbank.org:3939/iranDashboard/
 asMultiple: FALSE
 asStatic: FALSE
