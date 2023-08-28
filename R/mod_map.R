@@ -68,13 +68,13 @@ mod_map_server <- function(id, selected_data, pal_raw = c('#FFEDA0', '#FED976', 
       leaflet(options = leafletOptions(zoomSnap = 0.20, zoomDelta = 0.20)) %>%
         fitBounds(bb()[1],bb()[2],bb()[3],bb()[4]) %>%
         # addTiles() %>%
-        addProviderTiles(providers$CartoDB.Voyager, group = "CartoDB") %>%
-        addProviderTiles(providers$Esri, group = "ESRI") %>%
-        addProviderTiles(providers$OpenStreetMap , group = "OpenStreetMap") %>%
-        addLayersControl(
-          baseGroups = c("CartoDB", "ESRI", "OpenStreetMap"),
-          options = layersControlOptions(collapsed = T)
-        ) %>%
+        #addProviderTiles(providers$CartoDB.Voyager, group = "CartoDB") %>%
+        #addProviderTiles(providers$Esri, group = "ESRI") %>%
+        #addProviderTiles(providers$OpenStreetMap , group = "OpenStreetMap") %>%
+        #addLayersControl(
+        #  baseGroups = c("CartoDB", "ESRI", "OpenStreetMap"),
+        #  options = layersControlOptions(collapsed = T)
+        #) %>%
         addMeasure() %>%
         addScaleBar("bottomleft")
     })
